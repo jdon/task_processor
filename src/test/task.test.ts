@@ -127,3 +127,7 @@ test('Errors when given invalid minute', () => {
 		'Invalid minute. Minute must be more than zero and less than 60'
 	);
 });
+
+test('Errors when given invalid string minute', () => {
+	expect(() => Task.new('fdasda 1 command')).toThrow('Failed to parse fdasda');
+});
