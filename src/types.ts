@@ -7,6 +7,6 @@ export type Input = {
 };
 
 export enum Day {
-	today = 'today',
-	tomorrow = 'tomorrow',
+	Today = 'today',
+	Tomorrow = 'tomorrow',
 }

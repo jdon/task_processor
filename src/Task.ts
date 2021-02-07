@@ -58,14 +58,10 @@ export default class Task {
 		let formattedMinute = `${minute}`;
 		if (hour >= 24) {
 			hour = 0;
-			day = Day.tomorrow;
+			day = Day.Tomorrow;
 		}
 		if (minute < 10) {
-			if (minute === 0) {
-				formattedMinute = `00`;
-			} else {
-				formattedMinute = `0${minute}`;
-			}
+			formattedMinute = `0${minute}`;
 		}
 
 		return `${hour}:${formattedMinute} ${day} - ${command}`;
@@ -81,16 +77,16 @@ export default class Task {
 			return this.generateOutput(
 				currentHour,
 				currentMinute,
-				Day.today,
+				Day.Today,
 				this.command
 			);
 		}
 
 		if (this.minute === '*') {
 			if (currentHour > this.hour) {
-				return this.generateOutput(this.hour, 0, Day.tomorrow, this.command);
+				return this.generateOutput(this.hour, 0, Day.Tomorrow, this.command);
 			}
-			return this.generateOutput(this.hour, 0, Day.today, this.command);
+			return this.generateOutput(this.hour, 0, Day.Today, this.command);
 		}
 
 		if (this.hour === '*' || currentHour === this.hour) {
@@ -98,31 +94,30 @@ export default class Task {
 				return this.generateOutput(
 					currentHour,
 					this.minute,
-					Day.today,
+					Day.Today,
 					this.command
 				);
 			}
 			return this.generateOutput(
 				currentHour + 1,
 				this.minute,
-				Day.today,
-				this.command
-			);
-		} else {
-			if (currentHour < this.hour) {
-				return this.generateOutput(
-					this.hour,
-					this.minute,
-					Day.today,
-					this.command
-				);
-			}
-			return this.generateOutput(
-				this.hour,
-				this.minute,
-				Day.tomorrow,
+				Day.Today,
 				this.command
 			);
 		}
+		if (currentHour < this.hour) {
+			return this.generateOutput(
+				this.hour,
+				this.minute,
+				Day.Today,
+				this.command
+			);
+		}
+		return this.generateOutput(
+			this.hour,
+			this.minute,
+			Day.Tomorrow,
+			this.command
+		);
 	}
 }
