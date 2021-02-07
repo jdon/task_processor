@@ -1,4 +1,5 @@
-import { Day, parseNumber, TaskNumber } from './types';
+import { Day, TaskNumber } from './types';
+import { parseNumber } from './utils';
 
 export default class Task {
 	hour: TaskNumber;

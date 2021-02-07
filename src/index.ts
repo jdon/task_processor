@@ -2,6 +2,7 @@ import readline from 'readline';
 import Task from './Task';
 import { processTasks } from './utils';
 
+// Parse command line arguments
 const [, , inputtedTime] = process.argv;
 const [inputtedHour, inputtedMinute] = inputtedTime.split(':');
 
@@ -12,6 +13,7 @@ if (Number.isNaN(hour) || Number.isNaN(minute)) {
 	throw new Error('Inputted hour and minutes are invalid');
 }
 
+// Read from STDIN
 const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
@@ -25,6 +27,7 @@ rl.on('line', function (line) {
 	tasks.push(task);
 });
 
+// Finished reading from STDIN so process tasks
 rl.on('close', () => {
 	processTasks(tasks, hour, minute).forEach((task) => console.log(task));
 });

@@ -1,11 +1,12 @@
 # A task processor
 
+
 To run with test data:
 ```
 npm run start
 ```
 
-To run custom data:
+To run with custom data:
 ```
 npm run build && node ./dist/index.js HH:MM < config
 ```
