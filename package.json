@@ -1,0 +1,36 @@
+{
+	"version": "0.1.0",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"typings": "dist/index.d.ts",
+	"files": [
+		"dist",
+		"src"
+	],
+	"engines": {
+		"node": ">=14"
+	},
+	"scripts": {
+		"start": "npm run build && node ./dist/index.js 16:10 < test.txt",
+		"build": "rm -rf ./dist && tsc",
+		"test": "jest",
+		"lint": "eslint . --ext .ts"
+	},
+	"name": "task-processor",
+	"author": "Jonathan Donaldson",
+	"devDependencies": {
+		"@tsconfig/recommended": "^1.0.1",
+		"@types/jest": "^26.0.20",
+		"@types/node": "^10.17.51",
+		"jest": "^26.6.3",
+		"prettier": "^2.2.1",
+		"ts-jest": "^26.5.0",
+		"@typescript-eslint/eslint-plugin": "~2.27.0",
+		"@typescript-eslint/parser": "~2.27.0",
+		"eslint": "~6.8.0",
+		"eslint-config-prettier": "~6.10.1",
+		"eslint-plugin-prettier": "~3.1.2",
+		"typescript": "^3.9.7"
+	},
+	"dependencies": {}
+}
