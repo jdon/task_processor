@@ -30,6 +30,8 @@ export default class Task {
 		this.command = command;
 	}
 
+	// Decided to use a static method rather than do connector overloading,
+	// as typescript support isn't great.
 	static new(line: string): Task {
 		const SPLIT_CHAR = ' ';
 

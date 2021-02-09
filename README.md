@@ -1,5 +1,10 @@
 # A task processor
+Built using node 14.
 
+Before running anything, you will need to install the dependencies, this can be done using:
+```
+npm ci
+```
 
 To run with test data:
 ```
@@ -15,6 +20,16 @@ To run tests:
 ```
 npm run test
 ```
+
+To run tests with coverage run:
+```
+npm run test -- --coverage
+```
+
+## Further improvements
+1) Testing of reading from stdin and command line arguments. Due to time constraints, I decided it would be easier to manually test.
+2) Error handling wasn't mentioned in the specification, so I just have it throw an error. Would probably change it to run the valid tasks and then print out errors for the tasks it couldn't run.
+3) If further expanding then I would switch to a command line package like commander or oclif, rather than manually parse the command line arguments.
 
 ## Specification
 We have a set of tasks, each running at least daily, which are scheduled using some simple

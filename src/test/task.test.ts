@@ -58,43 +58,43 @@ test('Processes a task with a space', () => {
 });
 
 test('Processes a task with the same time', () => {
-	const task = Task.new('11 11 /bin/run_me_sixty_ times');
+	const task = Task.new('11 11 /bin/testTask');
 
 	const result = task.getNext(11, 11);
 
-	expect(result).toEqual('11:11 today - /bin/run_me_sixty_ times');
+	expect(result).toEqual('11:11 today - /bin/testTask');
 });
 
 test('Processes a task with hour above current hour and every min', () => {
-	const task = Task.new('* 11 /bin/run_me_sixty_ times');
+	const task = Task.new('* 11 /bin/testTask');
 
 	const result = task.getNext(12, 11);
 
-	expect(result).toEqual('11:00 tomorrow - /bin/run_me_sixty_ times');
+	expect(result).toEqual('11:00 tomorrow - /bin/testTask');
 });
 
 test('Processes a task with current hour and minute less than current', () => {
-	const task = Task.new('10 12 /bin/run_me_sixty_ times');
+	const task = Task.new('10 12 /bin/testTask');
 
 	const result = task.getNext(12, 11);
 
-	expect(result).toEqual('13:10 today - /bin/run_me_sixty_ times');
+	expect(result).toEqual('13:10 today - /bin/testTask');
 });
 
 test('Processes a task with greater than current hour', () => {
-	const task = Task.new('10 11 /bin/run_me_sixty_ times');
+	const task = Task.new('10 11 /bin/testTask');
 
 	const result = task.getNext(9, 11);
 
-	expect(result).toEqual('11:10 today - /bin/run_me_sixty_ times');
+	expect(result).toEqual('11:10 today - /bin/testTask');
 });
 
 test('Processes a task with less than current hour', () => {
-	const task = Task.new('10 11 /bin/run_me_sixty_ times');
+	const task = Task.new('10 11 /bin/testTask');
 
 	const result = task.getNext(11, 11);
 
-	expect(result).toEqual('12:10 today - /bin/run_me_sixty_ times');
+	expect(result).toEqual('12:10 today - /bin/testTask');
 });
 
 test('Processes tasks in correct order', () => {
@@ -130,4 +130,14 @@ test('Errors when given invalid minute', () => {
 
 test('Errors when given invalid string minute', () => {
 	expect(() => Task.new('fdasda 1 command')).toThrow('Failed to parse fdasda');
+});
+
+test('Errors when given invalid string hour', () => {
+	expect(() => Task.new('12 dsd command')).toThrow('Failed to parse dsd');
+});
+
+test('Errors when given empty string', () => {
+	expect(() => Task.new('')).toThrow(
+		"Invalid input. Input should be 'minute hour command'"
+	);
 });
